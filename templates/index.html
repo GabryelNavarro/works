@@ -1,0 +1,67 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="/static/enviar.js"></script>
+        <link rel="stylesheet" href="/static/index.css">
+        <title>Document</title>
+    </head>
+    <body>
+        <header>
+            <img src="/static/imgs/logoempresa.png" alt="" class="logoempresa">
+            <div class="cabecalho">
+                <h1>SyncGY Softwares <p></p></h1>
+                <p>Registros</p>
+            </div>
+
+        </header>
+        <nav>
+            <div class="menu">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Sobre</a></li>
+                    <li><a href="#">Lucro</a></li>
+                    <li><a href="/cadastros">Cadastros</a></li>
+                </ul>
+            </div>
+
+
+        </nav>
+    <main>
+        
+        <div class="Formulario">
+            <form action="{{ url_for('enviar') }}" method="post" class="form">
+                <label for="nome_projeto">Cliente</label>
+                <input type="text" id="nome_projeto" name="nome_projeto" placeholder="Nome do projeto" required>
+
+                <label for="tipo_projeto">Tipo de projeto</label>
+                <select name="tipo_projeto" id="tipo_projeto" required>
+                    <option value="">---Selecione---</option>
+                    <option value="wordpress">WordPress</option>
+                    <option value="lowcode">Low code</option>
+                    <option value="manutencao">Manutenção</option>
+                    <option value="seguranca">Segurança</option>
+                    <option value="agenteIA">Agente IA</option>
+                </select>
+            <label for="orcamento">Valor cobrado</label>
+                <input type="text" id="orcamento" name="orcamento" placeholder="R$ 0,00" required>
+
+                <label for="datai" >Data início</label>
+                <input type="date" id="data-i" name="Data_inicio" required>
+
+                <label for="datae" >Data Entrega</label>
+                <input type="date" id="data-e" name="Data_entrega" required>
+        
+
+
+                <input type="submit" value="Enviar" id="btnEnviar">
+            </form>
+        </div>
+    </main>
+
+        <footer>
+
+        </footer>
+    </body>
+    </html>

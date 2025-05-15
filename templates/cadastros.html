@@ -1,0 +1,38 @@
+<table> 
+  <thead>
+    <tr>
+      {% if cadastros %}
+          {% for chave in cadastros[0].keys() %}
+              <th>
+                {% if chave == 'Nome_projeto' %}
+                  NOME PROJETO
+                {% elif chave == 'Data_inicio' %}
+                  DATA INÍCIO
+                {% elif chave == 'Tipo_projeto' %}
+                  TIPO DE PROJETO
+                {% else %}
+                  {{ chave|replace('_', ' ')|upper }}
+                {% endif %}
+              </th>
+          {% endfor %}
+      {% else %}
+          <th>Nenhum dado cadastrado</th>
+      {% endif %}
+    </tr>
+  </thead>
+  <tbody>
+  {% for cadastro in cadastros %}
+    <tr>
+      {% for chave in cadastro.keys() %}
+        {% if chave in ['Data_inicio', 'Data_entrega'] and cadastro[chave] %}
+          {% set partes = cadastro[chave].split('-') %}
+          <td>{{ partes[2] }}/{{ partes[1] }}/{{ partes[0] }}</td>
+        {% else %}
+          <td>{{ cadastro[chave] }}</td>
+        {% endif %}
+      {% endfor %}
+    </tr>
+  {% endfor %}
+</tbody>
+
+</table>
