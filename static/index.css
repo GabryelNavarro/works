@@ -1,8 +1,7 @@
 *{
     padding: 0;
     margin: 0;
-    
-   
+ 
 }
 
 nav ul li a {
@@ -15,7 +14,11 @@ nav ul li a {
     font-weight: bold;
     text-shadow: 0px 0px 4px #0f889b;
     position: relative;
+    top: -15px;
 }
+
+
+
 
 nav ul li a::after {
     content: "";
@@ -23,15 +26,40 @@ nav ul li a::after {
     bottom: -3px;
     left: 0;
     height: 2px;
-    width: 0;
+    width: 10px;
     background-color: #028cbd; /* sublinhado branco */
     transition: width 0.3s ease;
+    box-shadow: 0px 0px 15px white;
 }
 
 nav ul li a:hover::after {
     width: 95%;
+    box-shadow: 0 0 8px 2px #00aaff;
+}
+#btnEnviar {
+    position: relative;
+    left: 130px;
+    top: 50px;
+    height: 25px;
+    width: 100px;
+    transition: 0.5s;
+    font-size: 9pt;
+    cursor: pointer;
+    text-align: center;
+    border: none;
+    background-color: transparent;
+    display: inline-block; /* importante para o posicionamento */
+   
+    border-bottom: 1px solid blue;
+    border-top: 1px solid blue;
 }
 
+#btnEnviar:hover {
+  transform: scale(1.1) translateY(-3px);
+  box-shadow: 0 0 8px 2px #00aaff, 0 0 15px 5px #028cbd;
+  color: #00d4ff;
+  transition: 0.3s linear;
+}
 
 
 .logoempresa{
@@ -77,16 +105,31 @@ body {
    
   
 }
-.cabecalho p{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 10pt;
-    font-weight: lighter;
-    text-align: center;
-    letter-spacing: 4px;
-    color: white;
-    text-transform: uppercase;
- 
+.cabecalho p {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 10pt;
+  font-weight: lighter;
+  text-align: center;
+  letter-spacing: 4px;
+  color: rgba(255, 255, 255, 0.808);
+  text-transform: uppercase;
+  
+  top: 160px;
+  position: absolute;
+  left:620px;
+  display: flex;
+  border-bottom: 1px solid#027cb5;
+  border-left: 1px solid #027cb5;
+  border-right: 1px solid#027cb5;
+  box-shadow: 0px 0px 15px #027cb5;
+  padding: 2px;
+  height: 25px;
+  width: 220px;
+  margin-left: 20px;
+  padding-left: 100px;
+  border-radius: 5px;
 }
+
 
 .menu{
     display: flex;
@@ -124,21 +167,33 @@ body {
    font-size: 9pt;
    letter-spacing: 2px;
    text-transform: uppercase;
-   
- 
+   height: 400px;
+
 
 }
 
 .Formulario label{
     display:block;
     padding: 4px;
+   height: 30px;
+   
 }
-.Formulario input{
+.Formulario input {
     border-radius: 5px;
-    text-align: center;
+    text-align: justify;
     background-color: #01496b77;
     border: none;
     color: white;
+    height: 28px !important;
+    top: -14px;
+    position: absolute;
+    border: 1px solid blue;
+    margin-left: -30px;
+    padding-left: 10px;
+}
+
+
+.Formulario input:focus{outline: 1px solid #027cb5;
 }
 
 .Formulario select{
@@ -147,27 +202,47 @@ body {
      color: white;
      text-align: center;
      border-radius: 5px;
+     border: 1px solid blue;
+     margin-left: -30px;
 }
 
 #nome_projeto{
 position: relative;
 left: 250px;
-bottom: 25px;
+bottom: 40px;
 height: 25px;
 }
+input:-webkit-autofill {
+  box-shadow: 0 0 0px 1000px #042738 inset !important; /* substitua 'white' pela cor que quiser */
+  -webkit-text-fill-color: rgb(255, 255, 255) !important;
+}
+
+
+#nome_projeto :focus{outline: 1px solid #027cb5;
+}
+
 #tipo_projeto{
     position: relative;
     left: 250px;
-    bottom: 25px;
-    height: 28px;
-    width: 166px; 
+    bottom: 14px;
+    height: 30px;
+    width: 180px; 
 }
+#tipo_projeto:focus{
+    outline: 1px solid #027cb5;
+}
+#tipo_projeto option{
+    text-align: left;
+    outline: #027cb5;
+
+}
+
 #orcamento{
      position: relative;
     left: 250px;
     bottom: 25px;
     height: 25px;   
-    width: 166px;
+    width: 170px;
 }
 
 #data-i{
@@ -175,30 +250,53 @@ height: 25px;
     left: 250px;
     bottom: 25px;
     height: 25px;
-    width: 166px;
+    width: 170px;
 }
+#data-i :focus{
+    outline: 1px solid #027cb5;
+}
+
+
 
 #data-e{
      position: relative;
     left: 250px;
     bottom: 25px;
     height: 25px;
-    width:166px ;
+    width:170px ;
+   
 }
 
-#btnEnviar{
+
+
+#data-e:focus{
+    outline: 1px solid #027cb5;
+}
+
+
+.cliente{
+    left: -16px;
     position: relative;
-    left: 110px;
-    top: 25px;
-    height: 25px;
-    width:100px ;
-    transition: 0.5s;
-    font-size: 9pt;
-    cursor: pointer;
-
+    top: 12px;
 }
 
-#btnEnviar:hover{
-transform: scale(1.2);
-transition: linear 0.2s;
+.work{
+     left: -16px;
+    position: relative;
+    top: 12px;
+}
+.price{
+      left: -16px;
+    position: relative;
+    top: 12px;
+}
+.datei{
+      left: -16px;
+    position: relative;
+    top: 12px;
+}
+.datefim{
+        left: -16px;
+    position: relative;
+    top: 12px;
 }

@@ -1,9 +1,11 @@
     <!DOCTYPE html>
-    <html lang="en">
+    <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="/static/enviar.js"></script>
+      
+        
         <link rel="stylesheet" href="/static/index.css">
         <title>Document</title>
     </head>
@@ -22,7 +24,7 @@
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Sobre</a></li>
                     <li><a href="#">Lucro</a></li>
-                    <li><a href="/cadastros">Cadastros</a></li>
+                    <li><a href="/cadastros">Projetos</a></li>
                 </ul>
             </div>
 
@@ -32,25 +34,25 @@
         
         <div class="Formulario">
             <form action="{{ url_for('enviar') }}" method="post" class="form">
-                <label for="nome_projeto">Cliente</label>
+                <label for="nome_projeto"><img src="/static/imgs/formulario/person_35dp_027CB5_FILL0_wght400_GRAD0_opsz40.svg" alt="" draggable="false" class="cliente" >Cliente</label>
                 <input type="text" id="nome_projeto" name="nome_projeto" placeholder="Nome do projeto" required>
 
-                <label for="tipo_projeto">Tipo de projeto</label>
+                <label for="tipo_projeto"><img src="/static/imgs/formulario/laptop_windows_35dp_027CB5_FILL0_wght400_GRAD0_opsz40.svg" draggable="false" alt="" class="work">Tipo de projeto</label>
                 <select name="tipo_projeto" id="tipo_projeto" required>
-                    <option value="">---Selecione---</option>
-                    <option value="wordpress">WordPress</option>
+                    <option value="">--Selecione o Serviço--</option>
+                    <option id="1" value="wordpress">WordPress</option>
                     <option value="lowcode">Low code</option>
                     <option value="manutencao">Manutenção</option>
                     <option value="seguranca">Segurança</option>
                     <option value="agenteIA">Agente IA</option>
                 </select>
-            <label for="orcamento">Valor cobrado</label>
+            <label for="orcamento"><img src="/static/imgs/formulario/payments_35dp_027CB5_FILL0_wght400_GRAD0_opsz40.svg" alt="" class="price" draggable="false">Valor cobrado</label>
                 <input type="text" id="orcamento" name="orcamento" placeholder="R$ 0,00" required>
 
-                <label for="datai" >Data início</label>
+                <label for="datai"><img src="/static/imgs/formulario/calendar_today_35dp_027CB5_FILL0_wght400_GRAD0_opsz40.svg" alt="" class="datei" draggable="false">Data início</label>
                 <input type="date" id="data-i" name="Data_inicio" required>
 
-                <label for="datae" >Data Entrega</label>
+                <label for="datae" ><img src="/static/imgs/formulario/calendar_today_35dp_027CB5_FILL0_wght400_GRAD0_opsz40.svg" alt="" class="datefim" draggable="false">Data Entrega</label>
                 <input type="date" id="data-e" name="Data_entrega" required>
         
 

@@ -1,5 +1,17 @@
-body{
-    background-color: #02060a;
+body {
+  position: relative;
+  background-color: #010509;
+  overflow: hidden; /* para evitar scroll inesperado */
+}
+
+body::before {
+  content: "";
+  position: fixed; /* fixo para seguir a rolagem */
+
+background-color: #010509;
+
+  filter: brightness(50%) blur(10px);
+  z-index: -1; /* atrás do conteúdo */
 }
 
 
@@ -40,10 +52,28 @@ tbody tr:nth-child(even) {
 tbody tr:hover {
     background-color: #4daedb;
     transition: 0.3s;
+    color: white;
 }
 
 
 
 .total{
     font-size: 11.5pt;
+    
+}
+.thtotal{
+    background-color: #0982b8;
+    color: white;
+    height: 45px;
+}
+
+.imgv {
+  position: relative;
+  margin-top: 2%;
+  margin-left: 5%;
+  transition: transform 5s linear;
+}
+
+.imgv:hover {
+  transform:scale(1.2);
 }

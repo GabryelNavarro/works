@@ -65,15 +65,16 @@ def enviar():
 @app.route("/cadastros")
 def lista_cadastros():
     cadastros = carregar_cadastros()
-
-    total_orcamento = sum(
-        parse_valor(c.get('orcamento', 0)) 
-        for c in cadastros 
-        if c.get('orcamento') not in (None, '', ' ')
-    )
+    
+    # Somar só os valores de 'orcamento' que não estejam vazios e que possam ser convertidos para float
+    total_orcamento = 0.0
+    for c in cadastros:
+        valor = c.get('orcamento')
+        if valor:  # só se tiver algo no campo
+            valor_float = parse_valor(valor)
+            total_orcamento += valor_float
 
     return render_template("cadastros.html", cadastros=cadastros, total_orcamento=total_orcamento)
-
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=4090, debug=True)
