@@ -1,0 +1,49 @@
+body{
+    background-color: #02060a;
+}
+
+
+table {
+    width: 90%;
+    margin: 40px auto;
+    border-collapse: collapse;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+thead {
+    background-color:#0982b8;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+thead th {
+    padding: 15px;
+    text-align: left;
+    letter-spacing: 1px;
+    font-size: 14px;
+}
+
+tbody td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #0982b8;
+    font-size: 13px;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tbody tr:hover {
+    background-color: #4daedb;
+    transition: 0.3s;
+}
+
+
+
+.total{
+    font-size: 11.5pt;
+}

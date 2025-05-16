@@ -38,6 +38,21 @@ def carregar_cadastros():
         dados.append(dict(zip(cabecalho, linha)))
     return dados
 
+def parse_valor(valor):
+    if not valor:
+        return 0.0
+    valor_str = str(valor).strip()
+
+    # Remove "R$", espaços e troca vírgula por ponto (decimal)
+    valor_limpo = valor_str.replace("R$", "").replace(" ", "").replace(".", "").replace(",", ".")
+
+    try:
+        return float(valor_limpo)
+    except ValueError:
+        print(f"Erro ao converter valor: {valor_str}")
+        return 0.0
+
+
 @app.route("/")
 def home():
     return render_template("index.html")
@@ -47,11 +62,18 @@ def enviar():
     dados = request.form.to_dict()
     salvar_em_planilha(dados)
     return redirect(url_for('home'))
-
 @app.route("/cadastros")
 def lista_cadastros():
     cadastros = carregar_cadastros()
-    return render_template("cadastros.html", cadastros=cadastros)
+
+    total_orcamento = sum(
+        parse_valor(c.get('orcamento', 0)) 
+        for c in cadastros 
+        if c.get('orcamento') not in (None, '', ' ')
+    )
+
+    return render_template("cadastros.html", cadastros=cadastros, total_orcamento=total_orcamento)
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=4090, debug=True)

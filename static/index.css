@@ -42,11 +42,17 @@ nav ul li a:hover::after {
     z-index: -99;  
     display: block;
 }
-body{
- background-image: url("imgs/logoempresap.png"); 
-    background-repeat:round;
-    background-size: cover;
-    background-attachment: fixed;
+
+body {
+    background-image: url("imgs/logoempresap.png");
+    background-repeat: no-repeat;
+    background-size: 80%; /* Cobre toda a tela sem deixar espaços */
+    background-position: center -250px; /* Começa do topo centralizado */
+    background-attachment: fixed; /* Fixa o fundo ao rolar */
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: #02060a;
 }
 
 .cabecalho{
@@ -61,6 +67,7 @@ body{
     letter-spacing: 10px;
     padding: 30px;
     color: white;
+    font-family: monospace;
 
     
     background-size: auto;

@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/static/cadastro.css">
 <table> 
   <thead>
     <tr>
@@ -33,6 +34,17 @@
       {% endfor %}
     </tr>
   {% endfor %}
-</tbody>
+  </tbody>
+  <tfoot>
+  
+</tfoot>
 
+</table>
+
+<table>
+  <tr>
+    <td class="total">
+      TOTAL: R$ {{ '{:,.2f}'.format(total_orcamento).replace(',', 'X').replace('.', ',').replace('X', '.') }}
+    </td>
+  </tr>
 </table>
