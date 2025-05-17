@@ -1,87 +1,108 @@
 window.addEventListener('DOMContentLoaded', () => {
-    const img = document.querySelector('.imgv'); // pega a imagem
-    const link = document.getElementById('backLink'); // pega o <a>
-    let hoverTimer;
+  const img = document.querySelector('.imgv'); 
+  const link = document.getElementById('backLink'); 
+  let hoverTimer;
 
+  if (img && link) {
     img.addEventListener('mouseenter', () => {
       hoverTimer = setTimeout(() => {
-        link.click(); // clica após 3 segundos
-      },260);
+        link.click(); 
+      }, 260);
     });
 
     img.addEventListener('mouseleave', () => {
-      clearTimeout(hoverTimer); // cancela se o mouse sair
+      clearTimeout(hoverTimer); 
     });
-  });
+  }
 
+  const inputNome = document.querySelector("#filtroNome");
+  const inputProjeto = document.querySelector("#filtroProjeto");
+  const inputCategoriaProjeto = document.querySelector("#filtroCategoriaProjeto");
 
-document.addEventListener("DOMContentLoaded", function () {
-  const input = document.querySelector("#filtroNome");
-  const rows = document.querySelectorAll("#dados-projetos tr");
+  const dataInicioInput = document.getElementById('dataInicio');
+  const dataFimInput = document.getElementById('dataFim');
 
-  input.addEventListener("input", function () {
-    const termo = input.value.toLowerCase();
+  if (dataInicioInput) dataInicioInput.addEventListener('input', aplicarFiltros);
+  if (dataFimInput) dataFimInput.addEventListener('input', aplicarFiltros);
 
-    rows.forEach((row) => {
-      const texto = row.textContent.toLowerCase();
-      row.style.display = texto.includes(termo) ? "" : "none";
-    });
-  });
-});
+  if (inputNome) inputNome.addEventListener("input", aplicarFiltros);
+  if (inputProjeto) inputProjeto.addEventListener("input", aplicarFiltros);
+  if (inputCategoriaProjeto) inputCategoriaProjeto.addEventListener("input", aplicarFiltros);
 
+  function aplicarFiltros() {
+    const termoNome = inputNome ? inputNome.value.toLowerCase() : '';
+    const termoProjeto = inputProjeto ? inputProjeto.value.toLowerCase() : '';
+    const termoCategoriaProjeto = inputCategoriaProjeto ? inputCategoriaProjeto.value.toLowerCase() : '';
 
-  const filtroInput = document.getElementById('filtroNome');
-    const tabela = document.getElementById('tabelaProjetos');
-    const totalTd = document.getElementById('totalOrcamento');
+    const dataInicio = dataInicioInput ? dataInicioInput.value : null;
+    const dataFim = dataFimInput ? dataFimInput.value : null;
 
-    // Função para converter string de valor "1.234,56" para número 1234.56
-    function parseValor(valorStr) {
-      if (!valorStr) return 0;
-      return parseFloat(valorStr.replace(/\./g, '').replace(',', '.')) || 0;
-    }
+    const tabela = document.querySelector('table tbody#dados-projetos');
+    if (!tabela) return;
+    const linhas = tabela.getElementsByTagName('tr');
 
-    // Função para formatar número para string "1.234,56"
-    function formatValor(valorNum) {
-      return valorNum.toFixed(2).replace('.', ',');
-    }
+    const inicioTime = dataInicio ? new Date(dataInicio).getTime() : null;
+    const fimTime = dataFim ? new Date(dataFim + 'T23:59:59').getTime() : null;
 
-    function filtrarESomar() {
-      const filtro = filtroInput.value.toLowerCase();
+    let somaOrcamento = 0;
 
-      let total = 0;
-      // Iterar linhas do corpo da tabela (tbody)
-      Array.from(tabela.tBodies[0].rows).forEach(row => {
-        const nomeProjeto = row.cells[0].textContent.toLowerCase();
+    for (let i = 0; i < linhas.length; i++) {
+      const linha = linhas[i];
 
-        if (nomeProjeto.includes(filtro)) {
-          row.style.display = '';
-          // A coluna do orçamento está na posição que depende da ordem do seu cabeçalho,
-          // aqui vou assumir que a coluna 'orcamento' é a que tem valor numérico e está sempre presente.
-          // Ajuste se necessário!
-          const orcamentoCell = Array.from(row.cells).find(cell => {
-            // tenta identificar célula contendo número no formato brasileiro
-            return cell.textContent.match(/^\d{1,3}(\.\d{3})*(,\d{2})?$/);
-          });
-          if (orcamentoCell) {
-            total += parseValor(orcamentoCell.textContent.trim());
-          } else {
-            // se não achou, tenta a célula da coluna orcamento pelo índice
-            // aqui, por segurança, assumo a coluna 2 (terceira)
-            total += parseValor(row.cells[2]?.textContent.trim());
-          }
+      const projetoColuna = linha.cells[0]?.textContent.toLowerCase() || '';
+      const categoriaProjetoColuna = linha.cells[1]?.textContent.toLowerCase() || '';
+      const celulaValor = linha.cells[2];
+      const celulaData = linha.cells[3];
+
+      let mostrar = true;
+
+      if (termoProjeto && !projetoColuna.includes(termoProjeto)) mostrar = false;
+      if (termoNome && !linha.textContent.toLowerCase().includes(termoNome)) mostrar = false;
+      if (termoCategoriaProjeto && !categoriaProjetoColuna.includes(termoCategoriaProjeto)) mostrar = false;
+
+      if (celulaData) {
+        const dataTexto = celulaData.textContent.trim();
+        const partes = dataTexto.split('/');
+        if (partes.length === 3) {
+          const dataObj = new Date(partes[2], partes[1] - 1, partes[0]);
+          const dataTime = dataObj.getTime();
+
+          if (inicioTime && dataTime < inicioTime) mostrar = false;
+          if (fimTime && dataTime > fimTime) mostrar = false;
         } else {
-          row.style.display = 'none';
+          mostrar = false;
         }
-      });
+      } else {
+        mostrar = false;
+      }
 
-      totalTd.textContent = 'R$ ' + formatValor(total);
+      linha.style.display = mostrar ? '' : 'none';
+
+      if (mostrar && celulaValor) {
+        const valorTexto = celulaValor.innerText.replace(/[R$\s.]/g, '').replace(',', '.');
+        const valor = parseFloat(valorTexto) || 0;
+        somaOrcamento += valor;
+      }
     }
 
-    filtroInput.addEventListener('input', filtrarESomar);
-    filtrarESomar();
+    const totalSpan = document.getElementById('totalOrcamento');
+    if (totalSpan) {
+      totalSpan.textContent = `R$ ${somaOrcamento.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    }
+  }
 
+  aplicarFiltros(); // Aplica ao carregar
 
+  const btnLimpar = document.getElementById('btnLimparFiltros');
 
-
-
-    
+  if (btnLimpar) {
+    btnLimpar.addEventListener('click', () => {
+      if (inputNome) inputNome.value = '';
+      if (inputProjeto) inputProjeto.value = '';
+      if (inputCategoriaProjeto) inputCategoriaProjeto.value = '';
+      if (dataInicioInput) dataInicioInput.value = '';
+      if (dataFimInput) dataFimInput.value = '';
+      aplicarFiltros();
+    });
+  }
+});

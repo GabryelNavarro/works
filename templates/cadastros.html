@@ -8,6 +8,30 @@
   <title>Document</title>
 </head>
 <body>
+  <header>
+    <!-- <div class="filtroCategoriaProjeto">
+<label for="filtroCategoriaProjeto">Categoria do Projeto</label>
+<input type="text" id="" placeholder="Filtrar por categoria do projeto" /> -->
+    
+
+
+
+
+    
+  <div class="datas">
+    <label for="dataInicio" class="labeli">Início</label>
+    <input type="date" id="dataInicio" class="dataI" />
+  
+
+  <label for="dataFim">Data Fim:</label>
+  <input type="date" id="dataFim" />
+  </div>
+
+  <button id="btnLimparFiltros">Limpar Filtros</button>
+
+</div>
+
+  </header>
 
   
   <main>
@@ -18,62 +42,66 @@
     </div>
 
     <!-- TABELA PRINCIPAL DOS PROJETOS -->
-    <table>
-      <thead>
-        <tr>
-          {% if cadastros %}
-            {% for chave in cadastros[0].keys() %}
-              <th>
-                {% if chave == 'nome_projeto' %}
-                  PROJETO
-                {% elif chave == 'tipo_projeto' %}
-                  CATEGORIA DO PROJETO
-                {% elif chave == 'orcamento' %}
-                  ORÇAMENTO 
-                {% elif chave == 'Data_inicio' %}
-                  INÍCIO
-                {% elif chave == 'Data_entrega' %}
-                  ENTREGA
-                {% else %}
-                  {{ chave|replace('_', ' ')|upper }}
-                {% endif %}
-              </th>
-            {% endfor %}
-          {% else %}
-            <th>Nenhum dado cadastrado</th>
-          {% endif %}
-        </tr>
-      </thead>
-
-      <tbody id="dados-projetos">
-        {% for cadastro in cadastros %}
+    <div class="tabela">
+      <table>
+        <thead>
           <tr>
-            {% for chave in cadastro.keys() %}
-              {% if chave in ['Data_inicio', 'Data_entrega'] and cadastro[chave] %}
-                {% set partes = cadastro[chave].split('-') %}
-                <td>{{ partes[2] }}/{{ partes[1] }}/{{ partes[0] }}</td>
-              {% else %}
-                <td>{{ cadastro[chave] }}</td>
-              {% endif %}
-            {% endfor %}
+            {% if cadastros %}
+              {% for chave in cadastros[0].keys() %}
+                <th>
+                  
+                  {% if chave == 'nome_projeto' %}
+                    PROJETO
+                    <input type="text" id="filtroProjeto" placeholder="Buscar..."  class="inputprojeto"/>
+                  {% elif chave == 'tipo_projeto' %}
+                    CATEGORIA DO PROJETO
+                    <input class="inputcategoria" type="text" id="filtroCategoriaProjeto" placeholder="Buscar..." />
+                    
+                  {% elif chave == 'orcamento' %}
+                    ORÇAMENTO
+                  {% elif chave == 'Data_inicio' %}
+                    DATA
+                  {% elif chave == 'Data_entrega' %}
+                    ENTREGA DO PROJETO
+                  {% else %}
+                    {{ chave|replace('_', ' ')|upper }}
+                  {% endif %}
+                </th>
+              {% endfor %}
+            {% else %}
+              <th>Nenhum dado cadastrado</th>
+            {% endif %}
           </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-
-    <!-- TABELA DO TOTAL (sempre visível) -->
-    <table>
-      <thead>
-        <tr><th class="thtotal">TOTAL</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="total">
-            R$ {{ '{:,.2f}'.format(total_orcamento).replace(',', 'X').replace('.', ',').replace('X', '.') }}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+        </thead>
+        <tbody id="dados-projetos">
+          {% for cadastro in cadastros %}
+            <tr>
+              {% for chave in cadastro.keys() %}
+                {% if chave in ['Data_inicio', 'Data_entrega'] and cadastro[chave] %}
+                  {% set partes = cadastro[chave].split('-') %}
+                  <td>{{ partes[2] }}/{{ partes[1] }}/{{ partes[0] }}</td>
+                {% else %}
+                  <td>{{ cadastro[chave] }}</td>
+                {% endif %}
+              {% endfor %}
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <!-- TABELA DO TOTAL (sempre visível) -->
+      <table>
+        <thead>
+          <tr><th class="thtotal">TOTAL</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+          <td class="total" id="totalOrcamento">
+          R$ {{ '{:,.2f}'.format(total_orcamento).replace(',', 'X').replace('.', ',').replace('X', '.') }}
+        </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
   </main>
 </body>
