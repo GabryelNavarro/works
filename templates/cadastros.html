@@ -3,72 +3,83 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="/static/js_projetos/efeitos.js"></script>  
+  <link rel="stylesheet" href="/static/cadastro.css">
   <title>Document</title>
-
-
-
-<link rel="stylesheet" href="/static/cadastro.css">
+</head>
 <body>
+
+  
   <main>
     <div>
-      <a href="/"><img class="imgv" src="/static/imgs/pagina_projetos/keyboard_backspace_35dp_027CB5_FILL0_wght400_GRAD0_opsz40.svg" alt=""></a>
+      <a href="/" id="backLink">
+        <img class="imgv" src="/static/imgs/pagina_projetos/keyboard_backspace_35dp_027CB5_FILL0_wght400_GRAD0_opsz40.svg" alt="Voltar">
+      </a>
     </div>
- 
-<table> 
-  <thead>
-  <tr>
-    {% if cadastros %}
-      {% for chave in cadastros[0].keys() %}
-        <th>
-          {% if chave == 'nome_projeto' %}
-            PROJETO
-          {% elif chave == 'tipo_projeto' %}
-            CATEGORIA DO PROJETO
-          {% elif chave == 'orcamento' %}
-            ORÇAMENTO 
-          {% elif chave == 'Data_inicio' %}
-            INÍCIO
-          {% elif chave == 'Data_entrega' %}
-            ENTREGA
+
+    <!-- TABELA PRINCIPAL DOS PROJETOS -->
+    <table>
+      <thead>
+        <tr>
+          {% if cadastros %}
+            {% for chave in cadastros[0].keys() %}
+              <th>
+                {% if chave == 'nome_projeto' %}
+                  PROJETO
+                {% elif chave == 'tipo_projeto' %}
+                  CATEGORIA DO PROJETO
+                {% elif chave == 'orcamento' %}
+                  ORÇAMENTO 
+                {% elif chave == 'Data_inicio' %}
+                  INÍCIO
+                {% elif chave == 'Data_entrega' %}
+                  ENTREGA
+                {% else %}
+                  {{ chave|replace('_', ' ')|upper }}
+                {% endif %}
+              </th>
+            {% endfor %}
           {% else %}
-            {{ chave|replace('_', ' ')|upper }}
+            <th>Nenhum dado cadastrado</th>
           {% endif %}
-        </th>
-      {% endfor %}
-    {% else %}
-      <th>Nenhum dado cadastrado</th>
-    {% endif %}
-  </tr>
-</thead>
+        </tr>
+      </thead>
 
-  <tbody>
-  {% for cadastro in cadastros %}
-    <tr>
-      {% for chave in cadastro.keys() %}
-        {% if chave in ['Data_inicio', 'Data_entrega'] and cadastro[chave] %}
-          {% set partes = cadastro[chave].split('-') %}
-          <td>{{ partes[2] }}/{{ partes[1] }}/{{ partes[0] }}</td>
-        {% else %}
-          <td>{{ cadastro[chave] }}</td>
-        {% endif %}
-      {% endfor %}
-    </tr>
-  {% endfor %}
-  </tbody>
-  <tfoot>
-  
-</tfoot>
+      <tbody id="dados-projetos">
+        {% for cadastro in cadastros %}
+          <tr>
+            {% for chave in cadastro.keys() %}
+              {% if chave in ['Data_inicio', 'Data_entrega'] and cadastro[chave] %}
+                {% set partes = cadastro[chave].split('-') %}
+                <td>{{ partes[2] }}/{{ partes[1] }}/{{ partes[0] }}</td>
+              {% else %}
+                <td>{{ cadastro[chave] }}</td>
+              {% endif %}
+            {% endfor %}
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
 
-</table>
+    <!-- TABELA DO TOTAL (sempre visível) -->
+    <table>
+      <thead>
+        <tr><th class="thtotal">TOTAL</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="total">
+            R$ {{ '{:,.2f}'.format(total_orcamento).replace(',', 'X').replace('.', ',').replace('X', '.') }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-<table>
-  <th class="thtotal">TOTAL</th>
-  <tr>
-    <td class="total">
-    R$ {{ '{:,.2f}'.format(total_orcamento).replace(',', 'X').replace('.', ',').replace('X', '.') }}
-    </td>
-  </tr>
-</table>
-</main>
+  </main>
 </body>
 </html>
+
+
+
+
+

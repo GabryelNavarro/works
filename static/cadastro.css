@@ -19,14 +19,15 @@ table {
     width: 90%;
     margin: 40px auto;
     border-collapse: collapse;
-    background-color: rgb(255, 255, 255);
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.589);
+    box-shadow: 0 0 15px #048cc0;
     border-radius: 10px;
     overflow: hidden;
+    border: 1px solid red;
 }
 
 thead {
-    background-color:#0982b8;
+    background-color:#04476e;
     color: rgb(255, 255, 255);
     font-weight: bold;
     text-transform: uppercase;
@@ -41,16 +42,16 @@ thead th {
 
 tbody td {
     padding: 12px 15px;
-    border-bottom: 1px solid #0982b8;
+    border-bottom: 1px solid #000000;
     font-size: 13px;
 }
 
 tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #f2f2f24f;
 }
 
 tbody tr:hover {
-    background-color: #4daedb;
+    background-color: #027cb5;
     transition: 0.3s;
     color: white;
 }
@@ -62,18 +63,24 @@ tbody tr:hover {
     
 }
 .thtotal{
-    background-color: #0982b8;
+    background-color: #04476e;
     color: white;
-    height: 45px;
+    height: 4px;
+    text-align: center;
 }
-
 .imgv {
   position: relative;
   margin-top: 2%;
   margin-left: 5%;
-  transition: transform 5s linear;
+  transition: transform 0.3s ease;
+  width: 45px;
+  padding-right: 0px;
+  transform-origin: left center; /* Origem no lado esquerdo */
 }
 
 .imgv:hover {
-  transform:scale(1.2);
+  transform: translateX(-30px);
 }
+
+
+

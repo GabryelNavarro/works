@@ -300,3 +300,71 @@ input:-webkit-autofill {
     position: relative;
     top: 12px;
 }
+/* Preloader full screen */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #0a0f1c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.5s ease;
+}
+
+/* Spinner neon azul */
+#preloader {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background-color: #0a0f1c;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.5s ease;
+  color: #069cc1;
+  font-family: 'Orbitron', sans-serif;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.spinner {
+  width: 80px; height: 80px;
+  border: 6px solid transparent;
+  border-top: 6px solid #00f0ff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  box-shadow: 0 0 15px #00f0ff, 0 0 30px #00f0ff;
+  margin-bottom: 30px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+#progress-text {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-shadow:
+    0 0 5px #00f0ff,
+    0 0 10px #00f0ff,
+    0 0 20px #00f0ff,
+    0 0 30px #00ffff,
+    0 0 40px #00ffff;
+  margin-bottom: 15px;
+}
+
+#loading-message {
+  font-size: 1.2rem;
+  max-width: 350px;
+  text-shadow:
+    0 0 5px #00f0ff,
+    0 0 10px #00f0ff;
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+}
