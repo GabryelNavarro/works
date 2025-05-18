@@ -23,13 +23,12 @@
     <input type="date" id="dataInicio" class="dataI" />
   
 
-  <label for="dataFim">Data Fim:</label>
-  <input type="date" id="dataFim" />
+  <label class="labelfim" for="dataFim">Fim</label>
+  <input type="date" id="dataFim" class="datafim" />
   </div>
 
   <button id="btnLimparFiltros">Limpar Filtros</button>
 
-</div>
 
   </header>
 
@@ -56,7 +55,7 @@
                   {% elif chave == 'tipo_projeto' %}
                     CATEGORIA DO PROJETO
                     <input class="inputcategoria" type="text" id="filtroCategoriaProjeto" placeholder="Buscar..." />
-                    
+                  
                   {% elif chave == 'orcamento' %}
                     ORÇAMENTO
                   {% elif chave == 'Data_inicio' %}

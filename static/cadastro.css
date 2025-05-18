@@ -159,6 +159,9 @@ tbody{
   left: 35%;
   top: 120px;
   word-spacing: 20px;
+  
+  width: 500px;
+
 }
 
 .dataI {
@@ -197,7 +200,114 @@ tbody{
   font-weight: normal;
   letter-spacing: 1px;
   position: relative;
-  left: 8%;
+  left: 25%;
   bottom: 25px;
   font-style: italic;
+}
+
+.labelfim{
+   color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-transform: uppercase;
+  font-size: 9pt;
+  font-weight: normal;
+  letter-spacing: 1px;
+  position: relative;
+  left: 22%;
+  bottom: 25px;
+  font-style: italic;
+ 
+}
+
+.datafim{
+  height: 25px;
+  width: 115px;
+  border-radius: 5px;
+  padding-left: 35px;
+  color: white;
+  border: 1px solid #037db3;
+
+  background: url("imgs/formulario/calendar_today_35dp_027CB5_FILL0_wght400_GRAD0_opsz40.svg") no-repeat 5px center;
+  background-size: 20px 20px;
+
+  appearance: none;
+ 
+}
+
+.datafim::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  cursor: pointer;
+}
+
+input[type="date"] {
+  z-index: 9999;
+  position: relative;
+}
+
+
+
+
+/* Responsividade básica para telas até 768px (tablets e celulares maiores) */
+@media (max-width: 768px) {
+  .inputcategoria {
+    position: static !important;
+    width: 90% !important;
+    margin: 10px auto !important;
+  }
+  .inputprojeto {
+    position: static !important;
+    width: 90% !important;
+    margin: 10px auto !important;
+  }
+
+  .datas {
+    width: 100% !important;
+    left: 0 !important;
+    top: 20px !important;
+    padding: 0 10px !important;
+    word-spacing: normal !important;
+  }
+
+  .dataI,
+  .datafim {
+    width: 45% !important;
+    padding-left: 35px !important;
+    font-size: 12px !important;
+  }
+
+  .labeli,
+  .labelfim {
+    position: static !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    text-align: left !important;
+    margin-bottom: 5px !important;
+    font-size: 10px !important;
+  }
+
+  .tabela {
+    width: 100% !important;
+    height: 300px !important;
+  }
+
+  table {
+    width: 100% !important;
+  }
+}
+
+/* Para celulares pequenos até 480px */
+@media (max-width: 480px) {
+  .dataI,
+  .datafim {
+    width: 100% !important;
+    margin-bottom: 10px !important;
+  }
+  .datas {
+    top: 10px !important;
+  }
 }
