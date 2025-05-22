@@ -49,7 +49,7 @@ nav ul li a:hover::after {
     border: none;
     background-color: transparent;
     display: inline-block; /* importante para o posicionamento */
-   
+   padding-left: 0;
     border-bottom: 1px solid blue;
     border-top: 1px solid blue;
 }
@@ -126,7 +126,7 @@ body {
   height: 25px;
   width: 220px;
   margin-left: 20px;
-  padding-left: 100px;
+  padding-left: 120px;
   border-radius: 5px;
 }
 
@@ -228,6 +228,12 @@ input:-webkit-autofill {
     height: 30px;
     width: 180px; 
 }
+
+#tipo_projeto:hover{
+  cursor: pointer;
+}
+
+
 #tipo_projeto:focus{
     outline: 1px solid #027cb5;
 }
@@ -235,7 +241,8 @@ input:-webkit-autofill {
     text-align: left;
     outline: #027cb5;
 
-}
+
+  }
 
 #orcamento{
      position: relative;
@@ -251,9 +258,17 @@ input:-webkit-autofill {
     bottom: 25px;
     height: 25px;
     width: 170px;
+  
+
+
+
+
 }
 #data-i :focus{
     outline: 1px solid #027cb5;
+}
+#data-i:hover{
+  cursor: pointer;
 }
 
 
@@ -265,6 +280,10 @@ input:-webkit-autofill {
     height: 25px;
     width:170px ;
    
+}
+
+#data-e:hover{
+  cursor: pointer;
 }
 
 

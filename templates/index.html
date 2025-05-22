@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
         <script src="/static/enviar.js"></script>
       
         
@@ -58,10 +59,10 @@
                 <input type="text" id="orcamento" name="orcamento" placeholder="R$ 0,00" required>
 
                 <label for="datai"><img src="/static/imgs/formulario/calendar_today_35dp_027CB5_FILL0_wght400_GRAD0_opsz40.svg" alt="" class="datei" draggable="false">Data início</label>
-                <input type="date" id="data-i" name="Data_inicio" required>
+                <input type="date" id="data-i" name="Data_inicio" required onclick="this.showPicker()">
 
                 <label for="datae" ><img src="/static/imgs/formulario/calendar_today_35dp_027CB5_FILL0_wght400_GRAD0_opsz40.svg" alt="" class="datefim" draggable="false">Data Entrega</label>
-                <input type="date" id="data-e" name="Data_entrega" required>
+                <input type="date" id="data-e" name="Data_entrega" required  onclick="this.showPicker()">
         
 
 
