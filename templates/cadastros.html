@@ -1,61 +1,47 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="/static/js_projetos/efeitos.js"></script>  
-  <link rel="stylesheet" href="/static/cadastro.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="/static/js_projetos/efeitos.js"></script>
+  <link rel="stylesheet" href="/static/cadastro.css" />
   <title>Document</title>
+
 </head>
 <body>
   <header>
-    <!-- <div class="filtroCategoriaProjeto">
-<label for="filtroCategoriaProjeto">Categoria do Projeto</label>
-<input type="text" id="" placeholder="Filtrar por categoria do projeto" /> -->
-    
+    <div class="datas">
+      <label for="dataInicio" class="labeli">Início</label>
+      <input type="date" id="dataInicio" class="dataI" />
 
-
-
-
-    
-  <div class="datas">
-    <label for="dataInicio" class="labeli">Início</label>
-    <input type="date" id="dataInicio" class="dataI" />
-  
-
-  <label class="labelfim" for="dataFim">Fim</label>
-  <input type="date" id="dataFim" class="datafim" />
-  </div>
-
-  <button id="btnLimparFiltros">Limpar Filtros</button>
-
-
+      <label class="labelfim" for="dataFim">Fim</label>
+      <input type="date" id="dataFim" class="datafim" />
+    </div>
+    <button id="btnLimparFiltros">Limpar Filtros</button>
   </header>
 
-  
   <main>
     <div>
       <a href="/" id="backLink">
-        <img class="imgv" src="/static/imgs/pagina_projetos/keyboard_backspace_35dp_027CB5_FILL0_wght400_GRAD0_opsz40.svg" alt="Voltar">
+        <img class="imgv" src="/static/imgs/pagina_projetos/keyboard_backspace_35dp_027CB5_FILL0_wght400_GRAD0_opsz40.svg" alt="Voltar" />
       </a>
     </div>
 
     <!-- TABELA PRINCIPAL DOS PROJETOS -->
     <div class="tabela">
       <table>
-        <thead>
+        <thead >
           <tr>
             {% if cadastros %}
               {% for chave in cadastros[0].keys() %}
-                <th>
-                  
+               <th class="cabecalho-editavel" contenteditable="false">
+
                   {% if chave == 'nome_projeto' %}
                     PROJETO
-                    <input type="text" id="filtroProjeto" placeholder="Buscar..."  class="inputprojeto"/>
+                    <input type="text" id="filtroProjeto" placeholder="Buscar..." class="inputprojeto" />
                   {% elif chave == 'tipo_projeto' %}
                     CATEGORIA DO PROJETO
                     <input class="inputcategoria" type="text" id="filtroCategoriaProjeto" placeholder="Buscar..." />
-                  
                   {% elif chave == 'orcamento' %}
                     ORÇAMENTO
                   {% elif chave == 'Data_inicio' %}
@@ -72,21 +58,27 @@
             {% endif %}
           </tr>
         </thead>
-        <tbody id="dados-projetos">
-          {% for cadastro in cadastros %}
-            <tr>
-              {% for chave in cadastro.keys() %}
-                {% if chave in ['Data_inicio', 'Data_entrega'] and cadastro[chave] %}
-                  {% set partes = cadastro[chave].split('-') %}
-                  <td>{{ partes[2] }}/{{ partes[1] }}/{{ partes[0] }}</td>
-                {% else %}
-                  <td>{{ cadastro[chave] }}</td>
-                {% endif %}
-              {% endfor %}
-            </tr>
-          {% endfor %}
-        </tbody>
       </table>
+
+      <div class="scroll-tbody">
+        <table>
+          <tbody id="dados-projetos">
+            {% for cadastro in cadastros %}
+              <tr>
+                {% for chave in cadastro.keys() %}
+                  {% if chave in ['Data_inicio', 'Data_entrega'] and cadastro[chave] %}
+                    {% set partes = cadastro[chave].split('-') %}
+                    <td>{{ partes[2] }}/{{ partes[1] }}/{{ partes[0] }}</td>
+                  {% else %}
+                    <td>{{ cadastro[chave] }}</td>
+                  {% endif %}
+                {% endfor %}
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
       <!-- TABELA DO TOTAL (sempre visível) -->
       <table>
         <thead>
@@ -94,19 +86,13 @@
         </thead>
         <tbody>
           <tr>
-          <td class="total" id="totalOrcamento">
-          R$ {{ '{:,.2f}'.format(total_orcamento).replace(',', 'X').replace('.', ',').replace('X', '.') }}
-        </td>
+            <td class="total" id="totalOrcamento">
+              R$ {{ '{:,.2f}'.format(total_orcamento).replace(',', 'X').replace('.', ',').replace('X', '.') }}
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
-
   </main>
 </body>
 </html>
-
-
-
-
-

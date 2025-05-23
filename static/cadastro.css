@@ -16,13 +16,27 @@ background-color: #010509;
 
 
 table {
-    width: 90%;
+    width: 80%;
     margin: 40px auto;
     border-collapse: collapse;
     background-color: rgba(255, 255, 255, 0.589);
-    box-shadow: 0 0 15px #048cc0;
+    box-shadow: 0 0 15px #048bc094;
     border-radius: 10px;
     overflow: hidden;
+    border-radius: 4px;
+    
+  
+   }
+   .cabecalho-editavel{
+    height: 25px;
+    font-weight: lighter;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    letter-spacing: 3px;
+    padding-left: 50px;
+    font-size: 10pt;
+    font-style: italic;
+   
+  
    }
 
 thead {
@@ -46,7 +60,7 @@ thead th {
 
 tbody td {
     padding: 12px 15px;
-    border-bottom: 1px solid #000000;
+    border-bottom: 1px solid #0068a5;
     font-size: 13px;
     
 }
@@ -57,7 +71,7 @@ tbody tr:nth-child(even) {
 
 tbody tr:hover {
     background-color: #027cb5;
-    transition: 0.3s;
+    transition: 0.7s;
     color: white;
 }
 
@@ -68,10 +82,14 @@ tbody tr:hover {
     
 }
 .thtotal{
-    background-color: #04476e;
+    background-color: #04476e00;
     color: white;
     height: 4px;
     text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: lighter;
+    letter-spacing: 2px;
+    font-style: italic;
 }
 .imgv {
   position: relative;
@@ -96,6 +114,7 @@ tbody tr:hover {
   bottom: 5%; 
   position: relative;
  margin-top: 5%;   /* faz a div respeitar a altura e scroll */
+
  
 }
 
