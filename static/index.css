@@ -434,7 +434,7 @@ input:-webkit-autofill {
     background-size: contain; /* Mostra a imagem inteira */
     background-attachment: scroll; /* Evita travar o fundo no celular */
     background-repeat: no-repeat;
-    background-position: center -40%;
+    background-position: center -30%;
   }
   .logoempresa{
     display: none;
