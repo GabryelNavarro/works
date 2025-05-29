@@ -399,6 +399,7 @@ input:-webkit-autofill {
     
     position: relative;
   }
+  
  
 
   .cabecalho p {
@@ -427,6 +428,16 @@ input:-webkit-autofill {
     position: relative;
     margin-top: 45px;
     
+  }
+
+  body {
+    background-size: contain; /* Mostra a imagem inteira */
+    background-attachment: scroll; /* Evita travar o fundo no celular */
+    background-repeat: no-repeat;
+    background-position: center -40%;
+  }
+  .logoempresa{
+    display: none;
   }
 
   .Formulario label {
