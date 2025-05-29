@@ -62,11 +62,7 @@ def parse_valor(valor):
         print(f"Erro ao converter valor: {valor_str}")
         return 0.0
 
-@app.route("/api/projetos")
-def api_projetos():
-    cadastros = carregar_cadastros()
-    projetos = sorted(set(c.get("nome_projeto", "") for c in cadastros if c.get("nome_projeto")))
-    return jsonify(projetos)
+
 @app.route("/")
 def home():
     return render_template("index.html")
