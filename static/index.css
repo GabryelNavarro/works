@@ -399,12 +399,18 @@ input:-webkit-autofill {
     
     position: relative;
   }
+ 
 
   .cabecalho p {
     font-size: 8pt;
-    width: auto;
+    width: 40%;
     padding: 5px;
     margin: 0 auto;
+    left: 20%;
+    top: 278%;
+    padding-left: 20%;
+  
+    
   }
 
   .menu ul {
@@ -414,11 +420,12 @@ input:-webkit-autofill {
   }
 
   .Formulario {
-    width: 100%;
+    width: 80%;
     padding: 30px;
-    left: -170px;
+    left: -130px;
     position: relative;
-    margin-top: 20px;
+    margin-top: 45px;
+    
   }
 
   .Formulario label {
