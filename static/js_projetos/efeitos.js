@@ -106,3 +106,38 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+
+
+    // Função para filtrar as linhas da tabela com base nos filtros de projeto e categoria
+    function filtrarTabela() {
+      const filtroProjeto = document.getElementById('filtroProjeto').value.toLowerCase();
+      const filtroCategoria = document.getElementById('filtroCategoriaProjeto').value.toLowerCase();
+      const linhas = document.querySelectorAll('#dados-projetos tr');
+
+      linhas.forEach(linha => {
+        const colunas = linha.querySelectorAll('td');
+        if(colunas.length < 2) return; // protege caso estrutura incompleta
+
+        const nomeProjeto = colunas[0].textContent.toLowerCase();
+        const categoriaProjeto = colunas[1].textContent.toLowerCase();
+
+        // Checa se a linha deve ser exibida
+        const mostra = 
+          (filtroProjeto === '' || nomeProjeto.includes(filtroProjeto)) &&
+          (filtroCategoria === '' || categoriaProjeto.includes(filtroCategoria));
+
+        linha.style.display = mostra ? '' : 'none';
+      });
+    }
+
+    // Evento para filtrar ao digitar nos inputs
+    document.getElementById('filtroProjeto').addEventListener('input', filtrarTabela);
+    document.getElementById('filtroCategoriaProjeto').addEventListener('input', filtrarTabela);
+
+    // Botão para limpar filtros e mostrar tudo
+    document.getElementById('btnLimparFiltros').addEventListener('click', () => {
+      document.getElementById('filtroProjeto').value = '';
+      document.getElementById('filtroCategoriaProjeto').value = '';
+      filtrarTabela();
+    });

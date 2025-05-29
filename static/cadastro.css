@@ -227,6 +227,7 @@ tbody{
   transition: 0.3s linear;
 }
 
+
 .botao_excluir:hover{
   cursor: pointer;
   transform: scale(1.2);

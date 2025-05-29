@@ -389,3 +389,39 @@ input:-webkit-autofill {
 }
 
 
+/* ------------------ RESPONSIVO ------------------ */
+@media (max-width: 768px) {
+  .cabecalho h1 {
+    font-size: 16pt;
+    letter-spacing: 5px;
+    z-index: -999;
+    color: transparent;
+    
+    position: relative;
+  }
+
+  .cabecalho p {
+    font-size: 8pt;
+    width: auto;
+    padding: 5px;
+    margin: 0 auto;
+  }
+
+  .menu ul {
+    padding-top: 100px;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .Formulario {
+    width: 100%;
+    padding: 30px;
+    left: -170px;
+    position: relative;
+    margin-top: 20px;
+  }
+
+  .Formulario label {
+    font-size: 8pt;
+  }
+}

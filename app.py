@@ -2,7 +2,10 @@ from flask import Flask, render_template, request, redirect, url_for
 import os
 from openpyxl import Workbook, load_workbook
 
+
+
 app = Flask(__name__)
+
 
 ARQUIVO = 'faturamento.xlsx'
 
@@ -10,16 +13,25 @@ def salvar_em_planilha(novo_cadastro):
     if os.path.exists(ARQUIVO):
         wb = load_workbook(ARQUIVO)
         ws = wb.active
+        # Lê o cabeçalho atual
+        cabecalho = [cell.value for cell in ws[1]]
+        # Verifica se alguma chave nova não está no cabeçalho
+        chaves_novas = [k for k in novo_cadastro.keys() if k not in cabecalho]
+        if chaves_novas:
+            # Adiciona colunas novas ao cabeçalho
+            cabecalho.extend(chaves_novas)
+            # Atualiza a primeira linha com o novo cabeçalho completo
+            for col_num, valor in enumerate(cabecalho, start=1):
+                ws.cell(row=1, column=col_num, value=valor)
+        # Prepara a linha de dados na ordem do cabeçalho atualizado
+        linha = [novo_cadastro.get(col, '') for col in cabecalho]
     else:
         wb = Workbook()
         ws = wb.active
-        # Cria o cabeçalho com base nas chaves
         cabecalho = list(novo_cadastro.keys())
         ws.append(cabecalho)
+        linha = [novo_cadastro.get(col, '') for col in cabecalho]
 
-    # Garante que as colunas estejam na ordem do cabeçalho
-    cabecalho = [col.value for col in ws[1]]
-    linha = [novo_cadastro.get(col, '') for col in cabecalho]
     ws.append(linha)
     wb.save(ARQUIVO)
 
@@ -29,13 +41,11 @@ def carregar_cadastros():
     wb = load_workbook(ARQUIVO)
     ws = wb.active
     linhas = list(ws.values)
-    if not linhas or len(linhas) < 2:
+    if len(linhas) < 2:
         return []
 
     cabecalho = linhas[0]
-    dados = []
-    for linha in linhas[1:]:
-        dados.append(dict(zip(cabecalho, linha)))
+    dados = [dict(zip(cabecalho, linha)) for linha in linhas[1:] if linha and any(linha)]
     return dados
 
 def parse_valor(valor):
@@ -43,7 +53,7 @@ def parse_valor(valor):
         return 0.0
     valor_str = str(valor).strip()
 
-    # Remove "R$", espaços e troca vírgula por ponto (decimal)
+    # Remove "R$", espaços e pontos como separadores de milhar
     valor_limpo = valor_str.replace("R$", "").replace(" ", "").replace(".", "").replace(",", ".")
 
     try:
@@ -52,14 +62,24 @@ def parse_valor(valor):
         print(f"Erro ao converter valor: {valor_str}")
         return 0.0
 
-
+@app.route("/api/projetos")
+def api_projetos():
+    cadastros = carregar_cadastros()
+    projetos = sorted(set(c.get("nome_projeto", "") for c in cadastros if c.get("nome_projeto")))
+    return jsonify(projetos)
 @app.route("/")
 def home():
     return render_template("index.html")
 
+
+
 @app.route('/excluir_cadastro', methods=['POST'])
 def excluir_cadastro():
-    linha = int(request.form['linha']) - 1  # loop.index começa em 1
+    try:
+        linha = int(request.form['linha']) - 1  # loop.index começa em 1
+    except (ValueError, KeyError):
+        return redirect(url_for('lista_cadastros'))
+
     cadastros = carregar_cadastros()
 
     if 0 <= linha < len(cadastros):
@@ -81,25 +101,38 @@ def excluir_cadastro():
 
     return redirect(url_for('lista_cadastros'))
 
-
 @app.route("/enviar", methods=["POST"])
 def enviar():
     dados = request.form.to_dict()
     salvar_em_planilha(dados)
     return redirect(url_for('home'))
+
 @app.route("/cadastros")
 def lista_cadastros():
     cadastros = carregar_cadastros()
-    
-    # Somar só os valores de 'orcamento' que não estejam vazios e que possam ser convertidos para float
+
     total_orcamento = 0.0
+    projetos = set()
+    categorias = set()
+
     for c in cadastros:
         valor = c.get('orcamento')
-        if valor:  # só se tiver algo no campo
-            valor_float = parse_valor(valor)
-            total_orcamento += valor_float
+        if valor:
+            total_orcamento += parse_valor(valor)
 
-    return render_template("cadastros.html", cadastros=cadastros, total_orcamento=total_orcamento)
+        # Adiciona valores únicos para filtros
+        if c.get("nome_projeto"):
+            projetos.add(c["nome_projeto"])
+        if c.get("tipo_projeto"):
+            categorias.add(c["tipo_projeto"])
+
+    return render_template(
+        "cadastros.html",
+        cadastros=cadastros,
+        total_orcamento=total_orcamento,
+        projetos=sorted(projetos),
+        categorias=sorted(categorias)
+    )
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=4090, debug=True)
