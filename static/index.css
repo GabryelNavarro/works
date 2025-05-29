@@ -407,8 +407,8 @@ input:-webkit-autofill {
     padding: 5px;
     margin: 0 auto;
     left: 20%;
-    top: 278%;
-    padding-left: 20%;
+    top: 289%;
+    padding-left: 15%;
   
     
   }
@@ -417,12 +417,13 @@ input:-webkit-autofill {
     padding-top: 100px;
     align-items: center;
     gap: 10px;
+    margin-left: -30px;
   }
 
   .Formulario {
     width: 80%;
     padding: 30px;
-    left: -130px;
+    left: -115px;
     position: relative;
     margin-top: 45px;
     
@@ -430,5 +431,31 @@ input:-webkit-autofill {
 
   .Formulario label {
     font-size: 8pt;
+  }
+  .Formulario input{
+    margin-left: -70px;
+  
+  }
+
+  #nome_projeto{
+    width: 45%;
+  }
+
+  #orcamento{
+    width: 45%;
+  }
+  #data-i{
+    width: 45%;
+  }
+
+  #data-e{
+    width: 45%;
+  }
+  #tipo_projeto{
+    width: 49%;
+    margin-left: -70px;
+  }
+  #btnEnviar{
+   left: 88px;
   }
 }
