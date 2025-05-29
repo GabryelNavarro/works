@@ -10,14 +10,7 @@
 </head>
 <body>
   <header>
-    <div class="datas">
-      <label for="dataInicio" class="labeli">Início</label>
-      <input type="date" id="dataInicio" class="dataI" />
 
-      <label class="labelfim" for="dataFim">Fim</label>
-      <input type="date" id="dataFim" class="datafim" />
-    </div>
-    <button id="btnLimparFiltros">Limpar Filtros</button>
   </header>
 
   <main>
@@ -26,6 +19,25 @@
         <img class="imgv" src="/static/imgs/pagina_projetos/keyboard_backspace_35dp_027CB5_FILL0_wght400_GRAD0_opsz40.svg" alt="Voltar" />
       </a>
     </div>
+    <div class="filtros">
+      <input type="text" id="filtroProjeto" placeholder="Buscar projeto..." class="inputprojeto" />
+      <input class="inputcategoria" type="text" id="filtroCategoriaProjeto" placeholder="Buscar categoria..." />
+
+      
+    </div>
+        <div class="datas">
+      <label for="dataInicio" class="labeli">Início</label>
+      <input type="date" id="dataInicio" class="dataI" />
+
+      <label class="labelfim" for="dataFim">Fim</label>
+      <input type="date" id="dataFim" class="datafim" />
+       
+    </div>
+    <div class="div_botao_limparfiltro">
+      <button id="btnLimparFiltros" class="botao_limpar_filtro">Limpar Filtros</button>
+    </div>
+   
+    
 
     <!-- TABELA PRINCIPAL DOS PROJETOS -->
     <div class="tabela">
@@ -38,10 +50,10 @@
 
                   {% if chave == 'nome_projeto' %}
                     PROJETO
-                    <input type="text" id="filtroProjeto" placeholder="Buscar..." class="inputprojeto" />
+                    
                   {% elif chave == 'tipo_projeto' %}
                     CATEGORIA DO PROJETO
-                    <input class="inputcategoria" type="text" id="filtroCategoriaProjeto" placeholder="Buscar..." />
+                    
                   {% elif chave == 'orcamento' %}
                     ORÇAMENTO
                   {% elif chave == 'Data_inicio' %}
@@ -73,6 +85,17 @@
                     <td>{{ cadastro[chave] }}</td>
                   {% endif %}
                 {% endfor %}
+
+                <td>
+      <form method="POST" action="{{ url_for('excluir_cadastro') }}">
+        <input type="hidden" name="linha" value="{{ loop.index }}">
+        <button type="submit" class="botao_excluir" onclick="return confirm('Tem certeza que deseja excluir?')"><img src="/static/imgs/pagina_projetos/botao_excluir.svg" alt=""></button>
+      </form>
+    </td>
+
+
+
+
               </tr>
             {% endfor %}
           </tbody>

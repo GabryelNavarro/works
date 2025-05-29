@@ -132,7 +132,7 @@ tbody{
 }
 
 .inputcategoria{
-  position: absolute;
+ 
   top: 16px;
   left: 360px;
   height: 16pt;
@@ -147,17 +147,30 @@ tbody{
   color: white;
   text-align: justify;
   padding-left: 15px;
-  
+  z-index: 999;
+ 
+   outline: 1px solid transparent;
+   transition: outline-color 0.5s linear, background-color 0.5s linear;
 }
 .inputcategoria:focus{
-  outline: none;
+  outline:1px solid #048cc0;
+  transition: linear 0.5s;
   
+}
+.filtros {
+  position: sticky;
+  top: 200px; /* Começa a grudar no topo */
+  margin-left: 160px;
+  z-index: 999;
+  display: flex;
+  gap: 50px;
+  align-items: center;
 }
 
 .inputprojeto{
-  position: absolute;
-  top: 16px;
-  left: 90px;
+
+
+  
   height: 16pt;
   background-color: #00000064;
    border-bottom: 1px solid #01496a;
@@ -170,16 +183,64 @@ tbody{
   color: white;
   text-align: justify;
   padding-left: 15px;
+   outline: 1px solid transparent;
+   transition: outline-color 0.5s linear, background-color 0.5s linear;
   
+}
+.inputprojeto:focus{
+    outline:1px solid #048cc0;
+  transition: linear 0.5s;
+
+}
+
+
+
+.div_botao_limparfiltro{
+  position: sticky;
+  margin-left: 75%;
+  top: 197px;
+  z-index: 999;
+ 
+ 
+}
+.botao_limpar_filtro{
+  height: 26px;
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.842);
+  border: 1px solid #0068a5;
+  border-radius: 5px;
+  letter-spacing: 1.5px;
+  font-size: 8pt;
+  transition: linear 0.3s;
+
+}
+.botao_limpar_filtro:hover{
+  transform: scale(1.1) translateY(-3px);
+  box-shadow: 0 0 8px 2px #00aaff, 0 0 15px 5px #028cbd;
+  color: #00d4ff;
+  transition: 0.3s linear;
+  cursor: pointer;
+}
+.botao_excluir{
+  border: none;
+  background: none;
+  transition: 0.3s linear;
+}
+
+.botao_excluir:hover{
+  cursor: pointer;
+  transform: scale(1.2);
+  transition: 0.3s linear;
 }
 
 .datas{
-  position: relative;
-  left: 35%;
-  top: 120px;
+  position: sticky;
+  left: 40%;
+  top: 197px;
   word-spacing: 20px;
-  
+  gap: 50px;
   width: 500px;
+  z-index: 999;
 
 }
 

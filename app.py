@@ -57,6 +57,31 @@ def parse_valor(valor):
 def home():
     return render_template("index.html")
 
+@app.route('/excluir_cadastro', methods=['POST'])
+def excluir_cadastro():
+    linha = int(request.form['linha']) - 1  # loop.index começa em 1
+    cadastros = carregar_cadastros()
+
+    if 0 <= linha < len(cadastros):
+        cadastros.pop(linha)
+
+        # Reescreve a planilha inteira com os cadastros restantes
+        wb = Workbook()
+        ws = wb.active
+
+        if cadastros:
+            cabecalho = list(cadastros[0].keys())
+            ws.append(cabecalho)
+
+            for cadastro in cadastros:
+                linha_valores = [cadastro.get(col, '') for col in cabecalho]
+                ws.append(linha_valores)
+
+        wb.save(ARQUIVO)
+
+    return redirect(url_for('lista_cadastros'))
+
+
 @app.route("/enviar", methods=["POST"])
 def enviar():
     dados = request.form.to_dict()
