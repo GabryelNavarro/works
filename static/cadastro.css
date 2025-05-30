@@ -406,12 +406,20 @@ input[type="date"] {
   .tabela {
     width: 600px !important;
     height: auto !important;
+      overflow-x: auto !important;
+      overflow-y: auto !important;
+      display: block !important; 
   }
-
+.tabela th,
+.tabela td {
+  white-space: nowrap; /* evita quebra de linha nas células */
+  padding: 8px;
+  text-align: left;}
   table {
       width: 100%;
   border-collapse: collapse;
   table-layout: fixed; /* <- Faz o width das colunas funcionar */
+  overflow-x: scroll;
      
   table-layout: auto;
   }
