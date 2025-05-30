@@ -335,6 +335,114 @@ input[type="date"] {
 
 /* Responsividade básica para telas até 768px (tablets e celulares maiores) */
 @media (max-width: 768px) {
+  .inputcategoria {
+    position: relative !important;
+    width: 250px !important;
   
-}
+    margin-bottom: 60px;
+    left: -150px;
+    display: flex;
+     margin:  10px auto;
+  }
+  .div_botao_limparfiltro{
+    top: 35px;
+    left: 200px;
+    position: relative;
+   
+   
+    
+  }
+  .botao_limpar_filtro{
+    width: 100px;
+     height: 25px;
+  }
+
+  .inputprojeto {
+    position: relative !important;
+    width: 250px !important;
  
+    left: -150px;
+    top: 20px;
+    display: flex;
+   
+    
+    
+  }
+.datas {
+  width: 160px !important;
+  left: 0 !important;
+  margin-top: -30px !important; /* em vez de -100px, sobe só um pouco */
+  padding: 0 10px !important;
+  word-spacing: normal !important;
+  position: relative;
+}
+
+.cabecalho-editavel {
+   width: 100px !important;        /* Defina a largura que quiser */
+  height: 30px !important;
+  font-size: 8pt;
+  padding: 5px !important;
+  line-height: 1 !important;
+
+  text-align: center !important;
+  vertical-align: middle !important;
+
+  border: none;
+  letter-spacing: 2px;
+ 
+}
+
+
+  .labeli,
+  .labelfim {
+    position: relative !important;
+    left: 5px !important;
+    bottom: 5px !important;
+    text-align: left !important;
+    margin-bottom: 5px !important;
+    font-size: 10px !important;
+  }
+
+  .tabela {
+    width: 600px !important;
+    height: 400px !important;
+      overflow-x: auto !important;
+      overflow-y: auto !important;
+      display: block !important; 
+  }
+
+
+  .tabela{
+     width: max-content;
+  border-collapse: collapse;
+  }
+.tabela th,
+.tabela td {
+  white-space: nowrap; /* evita quebra de linha nas células */
+  padding: 8px;
+  text-align: left;}
+  table {
+      width: 100%;
+  border-collapse: collapse;
+  table-layout: auto; /* <- Faz o width das colunas funcionar */
+  overflow-x: scroll;
+     
+  table-layout: auto;
+  }
+  th, td {
+  padding: 0;
+  margin: 0;
+}
+}
+
+/* Para celulares pequenos até 480px */
+@media (max-width: 480px) {
+  .dataI,
+  .datafim {
+    width: 100% !important;
+    margin-bottom: 10px !important;
+  }
+  .datas {
+    top: 10px !important;
+  }
+}
