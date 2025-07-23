@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 import os
 from openpyxl import Workbook, load_workbook
+from flask import jsonify
 
 
 
@@ -66,6 +67,10 @@ def parse_valor(valor):
 @app.route("/")
 def home():
     return render_template("index.html")
+
+@app.route("/extrato")
+def extrato():
+    return render_template("extrato.html")
 
 
 

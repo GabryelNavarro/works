@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     link.addEventListener('mouseenter', () => {
       hoverTimer = setTimeout(() => {
-        link.click(); // clica após 3 segundos
+        link.click(); // clica após 4 segundos
       }, 400);
     });
 
@@ -65,6 +65,24 @@ document.addEventListener("DOMContentLoaded", function () {
       clearTimeout(hoverTimer); // cancela se o mouse sair
     });
   });
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const elink = document.getElementById('extratoLink');
+    let hoverTimer;
+
+    elink.addEventListener('mouseenter', () => {
+      hoverTimer = setTimeout(() => {
+        elink.click(); // clica após 4 segundos
+      }, 400);
+    });
+
+    elink.addEventListener('mouseleave', () => {
+      clearTimeout(hoverTimer); // cancela se o mouse sair
+    });
+  });
+
+
+
 
 // preloader
 
