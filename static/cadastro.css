@@ -89,11 +89,19 @@ tbody tr:hover {
     color: white;
 }
 
-
+tbody tr{
+  transition: ease-in-out 0.4s;
+}
 
 .total{
     font-size: 11.5pt;
-    
+    color: #00aaff;
+    transition: ease-in-out 0.5s;
+}
+.total:hover{
+  color: white;
+  background-color: #0068a5;
+  transition: ease-in-out 0.5s;
 }
 .thtotal{
     background-color: #04476e00;

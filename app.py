@@ -113,13 +113,27 @@ def lista_cadastros():
     cadastros = carregar_cadastros()
 
     total_orcamento = 0.0
+    total_minutos = 0  # vamos somar tudo em minutos
     projetos = set()
     categorias = set()
 
     for c in cadastros:
+        # soma o orçamento
         valor = c.get('orcamento')
         if valor:
             total_orcamento += parse_valor(valor)
+
+        # soma o tempo de serviço
+        tempo = c.get('tempo_servico', '')
+        if tempo:
+            try:
+                if ':' in tempo:
+                    horas, minutos = map(int, tempo.split(':'))
+                    total_minutos += horas * 60 + minutos
+                else:
+                    total_minutos += int(float(tempo) * 60)  # se for decimal
+            except ValueError:
+                pass  # ignora se não conseguir converter
 
         # Adiciona valores únicos para filtros
         if c.get("nome_projeto"):
@@ -127,17 +141,26 @@ def lista_cadastros():
         if c.get("tipo_projeto"):
             categorias.add(c["tipo_projeto"])
 
+    total_liquido = total_orcamento / 2
+
+    # converte minutos totais para HH:MM
+    horas_totais = total_minutos // 60
+    minutos_totais = total_minutos % 60
+    total_horas_formatado = f"{int(horas_totais):02d}:{int(minutos_totais):02d}"
+
     return render_template(
         "cadastros.html",
         cadastros=cadastros,
         total_orcamento=total_orcamento,
+        total_liquido=total_liquido,
+        total_horas_formatado=total_horas_formatado,
         projetos=sorted(projetos),
         categorias=sorted(categorias)
     )
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=4090, debug=True)
 
 
-# fazer um input nao editavel só para mostrar o valor calculado, R$200,00 á cada 10h de servico, quero colocar o tempo que fiquei trabalhamdo e ele calcula e coloca em um input para eu só visualizar o valor mudandando em tempo real.
 
