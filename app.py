@@ -5,17 +5,17 @@ import os
 # Configuração do Flask
 app = Flask(__name__)
 
-# Configuração do Supabase (variáveis de ambiente)
-SUPABASE_URL = os.environ.get("SUPABASE_URL")
-SUPABASE_KEY = os.environ.get("SUPABASE_KEY")
+# Pega variáveis de ambiente
+url = os.getenv("SUPABASE_URL")
+key = os.getenv("SUPABASE_KEY")
 
-if not SUPABASE_URL or not SUPABASE_KEY:
+if not url or not key:
     raise RuntimeError("As variáveis SUPABASE_URL e SUPABASE_KEY não estão configuradas.")
 
-supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
+# Cria cliente Supabase
+supabase: Client = create_client(url, key)
 
 # ---------- Funções de Banco de Dados ----------
-
 def salvar_no_supabase(novo_cadastro: dict):
     try:
         supabase.table("faturamento").insert(novo_cadastro).execute()
@@ -37,7 +37,6 @@ def excluir_cadastro_supabase(linha_id: int):
         print(f"Erro ao excluir do Supabase: {e}")
 
 # ---------- Funções Auxiliares ----------
-
 def parse_valor(valor):
     if not valor:
         return 0.0
@@ -50,7 +49,6 @@ def parse_valor(valor):
         return 0.0
 
 # ---------- Rotas ----------
-
 @app.route("/")
 def home():
     return render_template("index.html")
@@ -82,12 +80,10 @@ def lista_cadastros():
     categorias = set()
 
     for c in cadastros:
-        # Soma orçamento
         valor = c.get('orcamento')
         if valor:
             total_orcamento += parse_valor(valor)
 
-        # Soma tempo de serviço
         tempo = c.get('tempo_servico', '')
         if tempo:
             try:
@@ -99,7 +95,6 @@ def lista_cadastros():
             except ValueError:
                 pass
 
-        # Adiciona filtros únicos
         if c.get("nome_projeto"):
             projetos.add(c["nome_projeto"])
         if c.get("tipo_projeto"):
@@ -121,5 +116,5 @@ def lista_cadastros():
     )
 
 # ---------- Execução local ----------
-# if __name__ == "__main__":
-#     app.run(host="0.0.0.0", port=4090, debug=True)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=4090, debug=True)
