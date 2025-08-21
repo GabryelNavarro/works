@@ -24,8 +24,8 @@ table {
     border-radius: 10px;
     overflow: hidden;
     border-radius: 4px;
-    
-  
+    background-color: #414141a6;
+   
    }
    .cabecalho-editavel{
     height: 25px;
@@ -36,6 +36,7 @@ table {
     font-size: 10pt;
     font-style: italic;
    
+   
   
    }
 
@@ -44,9 +45,22 @@ thead {
     color: rgb(255, 255, 255);
     font-weight: bold;
     text-transform: uppercase;
+    text-align: center;
+   
+
    
     
    
+}
+.scroll-tbody{
+  color:#037DB3;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bolder;
+}
+
+.dados-projetos td{
+  background-color: #010509;
 }
 
 thead th {
@@ -66,7 +80,7 @@ tbody td {
 }
 
 tbody tr:nth-child(even) {
-    background-color: #f2f2f24f;
+    background-color: #3434344f;
 }
 
 tbody tr:hover {
@@ -114,7 +128,7 @@ tbody tr:hover {
   bottom: 5%; 
   position: relative;
  margin-top: 5%;   /* faz a div respeitar a altura e scroll */
-
+  
  
 }
 

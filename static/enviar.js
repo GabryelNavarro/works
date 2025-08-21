@@ -118,7 +118,7 @@ window.addEventListener('load', () => {
 document.addEventListener("DOMContentLoaded", () => {
   const tempoinput = document.getElementById("orcamento");
   const valorbruto = document.getElementById("valorbruto");
-  const valorPorHora = 100 / 10; // R$ 10/hora
+  const valorPorHora = 200 / 10; // R$ 10/hora
 
   tempoinput.addEventListener("input", () => {
     // Remove tudo que não for número
