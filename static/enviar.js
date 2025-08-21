@@ -15,39 +15,39 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-  const input = document.getElementById('orcamento');
+// document.addEventListener("DOMContentLoaded", function () {
+//   const input = document.getElementById('orcamento');
 
-  input.addEventListener('input', function (e) {
-    let value = e.target.value;
+//   input.addEventListener('input', function (e) {
+//     let value = e.target.value;
 
-    // Salva posição do cursor
-    let cursorPosition = e.target.selectionStart;
+//     // Salva posição do cursor
+//     let cursorPosition = e.target.selectionStart;
 
-    // Remove tudo que não é número
-    let numbers = value.replace(/\D/g, '');
+//     // Remove tudo que não é número
+//     let numbers = value.replace(/\D/g, '');
 
-    if (numbers.length === 0) {
-      e.target.value = '';
-      return;
-    }
+//     if (numbers.length === 0) {
+//       e.target.value = '';
+//       return;
+//     }
 
-    // Converte para número com 2 casas decimais
-    let numberValue = parseInt(numbers, 10) / 100;
+//     // Converte para número com 2 casas decimais
+//     let numberValue = parseInt(numbers, 10) / 100;
 
-    // Formata para Real (R$)
-    let formattedValue = numberValue.toLocaleString('pt-BR', {
-      style: 'currency',
-      currency: 'BRL'
-    });
+//     // Formata para Real (R$)
+//     let formattedValue = numberValue.toLocaleString('pt-BR', {
+//       style: 'currency',
+//       currency: 'BRL'
+//     });
 
-    e.target.value = formattedValue;
+//     e.target.value = formattedValue;
 
-    // Ajusta cursor para posição correta
-    // (simplificado: coloca no final do texto, mas evita pulos extremos)
-    e.target.setSelectionRange(e.target.value.length, e.target.value.length);
-  });
-});
+//     // Ajusta cursor para posição correta
+//     // (simplificado: coloca no final do texto, mas evita pulos extremos)
+//     e.target.setSelectionRange(e.target.value.length, e.target.value.length);
+//   });
+// });
 
 
 // Efeito voltar automatico 
@@ -115,4 +115,42 @@ window.addEventListener('load', () => {
 });
 
 
+document.addEventListener("DOMContentLoaded", () => {
+  const tempoinput = document.getElementById("orcamento");
+  const valorbruto = document.getElementById("valorbruto");
+  const valorPorHora = 100 / 10; // R$ 10/hora
 
+  tempoinput.addEventListener("input", () => {
+    // Remove tudo que não for número
+    let numeros = tempoinput.value.replace(/\D/g, '');
+
+    // Limita a 4 dígitos (HHMM)
+    if (numeros.length > 4) numeros = numeros.slice(0, 4);
+
+    // Calcula horas e minutos
+    let horas = '0', minutos = '0';
+    if (numeros.length <= 2) {
+      horas = '0';
+      minutos = numeros;
+    } else {
+      horas = numeros.slice(0, numeros.length - 2);
+      minutos = numeros.slice(-2);
+    }
+
+    // Adiciona zero à esquerda para minutos
+    minutos = minutos.padStart(2, '0');
+
+    // Atualiza o input com HH:MM
+    tempoinput.value = `${parseInt(horas)}:${minutos}`;
+
+    // Calcula o valor total
+    const horasTotais = parseInt(horas) + (parseInt(minutos) / 60);
+    const valor = horasTotais * valorPorHora;
+
+    // Exibe no input de valor bruto
+    valorbruto.value = valor.toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL"
+    });
+  });
+});

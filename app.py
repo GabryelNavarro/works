@@ -137,3 +137,7 @@ def lista_cadastros():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=4090, debug=True)
+
+
+# fazer um input nao editavel só para mostrar o valor calculado, R$200,00 á cada 10h de servico, quero colocar o tempo que fiquei trabalhamdo e ele calcula e coloca em um input para eu só visualizar o valor mudandando em tempo real.
+

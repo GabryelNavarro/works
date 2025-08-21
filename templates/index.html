@@ -1,63 +1,69 @@
-    <!DOCTYPE html>
-    <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- Permite modo full screen no iPhone/iPad -->
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-        <meta name="apple-mobile-web-app-title" content="SyncGY">
-        <link rel="apple-touch-icon" href="/static/imgs/logoempresa.png">
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Permite modo full screen no iPhone/iPad -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="SyncGY">
+    <link rel="apple-touch-icon" href="/static/imgs/logoempresa.png">
 
 
-<!-- Responsividade e bloqueio de zoom -->
+    <!-- Responsividade e bloqueio de zoom -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-        
-        <script src="/static/enviar.js"></script>
-        <link rel="shortcut icon" href="/static/imgs/favicon_io/favico-removebg-preview.png" type="image/x-icon">
-      
-        
-        <link rel="stylesheet" href="/static/index.css">
-        <title>SyncGY Softwares </title>
-    </head>
-    <body>
-        <div id="preloader">
-  <div class="spinner"></div>
-  <div id="progress-text">0%</div>
-  <div id="loading-message">Aguarde, estamos carregando nossa tela para você...</div>
-</div>
+
+    <script src="/static/enviar.js"></script>
+    <link rel="shortcut icon" href="/static/imgs/favicon_io/favico-removebg-preview.png" type="image/x-icon">
+
+
+    <link rel="stylesheet" href="/static/index.css">
+    <title>SyncGY Softwares </title>
+</head>
+
+<body>
+    <div id="preloader">
+        <div class="spinner"></div>
+        <div id="progress-text">0%</div>
+        <div id="loading-message">Aguarde, estamos carregando nossa tela para você...</div>
+    </div>
 
 
 
-        <header>
-            <img src="/static/imgs/logoempresa.png" alt="" class="logoempresa">
-            <div class="cabecalho">
-                <h1>SyncGY Softwares </h1>
-                <p>Registros</p>
-            </div>
+    <header>
+        <img src="/static/imgs/logoempresa.png" alt="" class="logoempresa">
+        <div class="cabecalho">
+            <h1>SyncGY Softwares </h1>
+            <p>Registros</p>
+        </div>
 
-        </header>
-        <nav>
-            <div class="menu">
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Sobre</a></li>
-                    <li><a href="/extrato" id="extratoLink">Extrato</a></li>
-                    <li><a href="/cadastros" id="projetosLink">Projetos</a></li>
-                </ul>
-            </div>
+    </header>
+    <nav>
+        <div class="menu">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Sobre</a></li>
+                <li><a href="/extrato" id="extratoLink">Extrato</a></li>
+                <li><a href="/cadastros" id="projetosLink">Projetos</a></li>
+            </ul>
+        </div>
 
 
-        </nav>
+    </nav>
     <main>
-        
+
         <div class="Formulario">
             <form action="{{ url_for('enviar') }}" method="post" class="form">
-                <label for="nome_projeto"><img src="/static/imgs/formulario/person_35dp_027CB5_FILL0_wght400_GRAD0_opsz40.svg" alt="" draggable="false" class="cliente" >Cliente</label>
+                <label for="nome_projeto"><img
+                        src="/static/imgs/formulario/person_35dp_027CB5_FILL0_wght400_GRAD0_opsz40.svg" alt=""
+                        draggable="false" class="cliente">Cliente</label>
                 <input type="text" id="nome_projeto" name="nome_projeto" placeholder="Nome do projeto" required>
 
-                <label for="tipo_projeto"><img src="/static/imgs/formulario/laptop_windows_35dp_027CB5_FILL0_wght400_GRAD0_opsz40.svg" draggable="false" alt="" class="work">Tipo de projeto</label>
+                <label for="tipo_projeto"><img
+                        src="/static/imgs/formulario/laptop_windows_35dp_027CB5_FILL0_wght400_GRAD0_opsz40.svg"
+                        draggable="false" alt="" class="work">Tipo de projeto</label>
                 <select name="tipo_projeto" id="tipo_projeto" required>
                     <option value="">--Selecione o Serviço--</option>
                     <option id="1" value="wordpress">WordPress</option>
@@ -65,16 +71,41 @@
                     <option value="manutencao">Manutenção</option>
                     <option value="seguranca">Segurança</option>
                     <option value="agenteIA">Agente IA</option>
+                    <option value="suporte">Suporte</option>
                 </select>
-            <label for="orcamento"><img src="/static/imgs/formulario/payments_35dp_027CB5_FILL0_wght400_GRAD0_opsz40.svg" alt="" class="price" draggable="false">Valor cobrado</label>
-                <input type="text" id="orcamento" name="orcamento" placeholder="R$ 0,00" required>
 
-                <label for="datai"><img src="/static/imgs/formulario/calendar_today_35dp_027CB5_FILL0_wght400_GRAD0_opsz40.svg" alt="" class="datei" draggable="false">Data início</label>
-                <input type="date" id="data-i" name="Data_inicio" required onclick="this.showPicker()">
+                <label for="orcamento">
+                    <img src="/static/imgs/formulario/payments_35dp_027CB5_FILL0_wght400_GRAD0_opsz40.svg" alt=""
+                        class="price" draggable="false">
+                    Tempo de Serviço
+                </label>
+                <input type="text" id="orcamento" name="tempo_servico" placeholder="hh:mm" required>
 
-                <label for="datae" ><img src="/static/imgs/formulario/calendar_today_35dp_027CB5_FILL0_wght400_GRAD0_opsz40.svg" alt="" class="datefim" draggable="false">Data Entrega</label>
-                <input type="date" id="data-e" name="Data_entrega" required  onclick="this.showPicker()">
-        
+                <label for="valorbruto" class="valorbruto">
+                     <img src="/static/imgs/formulario/payments_35dp_027CB5_FILL0_wght400_GRAD0_opsz40.svg" alt="" class="imgbruto">
+                    Valor líquido
+                    
+                </label>
+                
+
+                <input type="text" id="valorbruto" name="orcamento" placeholder="R$ 0,00" readonly class="valorbrutoinput"
+                >
+
+
+
+
+
+
+                <label for="datai" class="datei"><img
+                        src="/static/imgs/formulario/calendar_today_35dp_027CB5_FILL0_wght400_GRAD0_opsz40.svg" alt=""
+                        class="datei" draggable="false"> Data início</label>
+                <input type="date" id="data-i" name="Data_inicio" required onclick="this.showPicker()" >
+
+                <label for="datae" class="datefim"><img
+                        src="/static/imgs/formulario/calendar_today_35dp_027CB5_FILL0_wght400_GRAD0_opsz40.svg" alt=""
+                        class="datefim" draggable="false"> Data Entrega</label>
+                <input type="date" id="data-e" name="Data_entrega" required onclick="this.showPicker()">
+
 
 
                 <input type="submit" value="Enviar" id="btnEnviar">
@@ -82,8 +113,9 @@
         </div>
     </main>
 
-        <footer>
+    <footer>
 
-        </footer>
-    </body>
-    </html>
+    </footer>
+</body>
+
+</html>

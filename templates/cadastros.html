@@ -57,15 +57,15 @@
               {% for chave in cadastros[0].keys() %}
                <th class="cabecalho-editavel" contenteditable="false">
                   {% if chave == 'nome_projeto' %}
-                    PROJETO
+                    CLIENTE
                   {% elif chave == 'tipo_projeto' %}
-                    CATEGORIA DO PROJETO
+                    PROJETO
                   {% elif chave == 'orcamento' %}
-                    ORÇAMENTO
+                    VALOR COBRADO
                   {% elif chave == 'Data_inicio' %}
-                    DATA
+                    DATA PEDIDO
                   {% elif chave == 'Data_entrega' %}
-                    ENTREGA DO PROJETO
+                    ENTREGA
                   {% else %}
                     {{ chave|replace('_', ' ')|upper }}
                   {% endif %}

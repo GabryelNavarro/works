@@ -256,7 +256,7 @@ input:-webkit-autofill {
 #data-i{
     position: relative;
     left: 250px;
-    bottom: 25px;
+    top: -4px;
     height: 25px;
     width: 170px;
   
@@ -277,9 +277,9 @@ input:-webkit-autofill {
 #data-e{
      position: relative;
     left: 250px;
-    bottom: 25px;
     height: 25px;
     width:170px ;
+    margin-top: 10px;
    
 }
 
@@ -311,12 +311,13 @@ input:-webkit-autofill {
     top: 12px;
 }
 .datei{
-      left: -16px;
+      left: -8px;
     position: relative;
     top: 12px;
+    
 }
 .datefim{
-        left: -16px;
+        left: -8px;
     position: relative;
     top: 12px;
 }
@@ -388,6 +389,24 @@ input:-webkit-autofill {
   letter-spacing: 0.1em;
   line-height: 1.4;
 }
+
+.imgbruto{
+right:  15px;
+position: relative;
+top: 14px;
+
+}
+
+
+.valorbruto{
+  position: relative;
+  bottom: 10px;
+}
+.valorbrutoinput{
+  position: relative;
+margin-top: 432px;
+left: 750px;
+width: 170px;}
 
 
 /* ------------------ RESPONSIVO ------------------ */
