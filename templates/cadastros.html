@@ -135,13 +135,13 @@
       <table>
         <thead>
           <tr>
-            <th class="thtotal">VALOR LÍQUIDO</th>
+            <th class="thtotal">TOTAL DE HORAS</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td class="total" id="totalLiquido">
-              R$ {{ '{:,.2f}'.format(total_liquido/2).replace(',', 'X').replace('.', ',').replace('X', '.') }}
+              {{total_horas_formatado}}
 
             </td>
           </tr>
@@ -152,13 +152,13 @@
   <table>
     <thead>
       <tr>
-        <th class="thtotal">TOTAL DE HORAS</th>
+        <th class="thtotal">TOTAL LIQUÍDO</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td class="total" id="totalOrcamento">
-          {{total_horas_formatado}}
+          R$ {{ '{:,.2f}'.format(total_liquido/2).replace(',', 'X').replace('.', ',').replace('X', '.') }}
         </td>
       </tr>
     </tbody>
